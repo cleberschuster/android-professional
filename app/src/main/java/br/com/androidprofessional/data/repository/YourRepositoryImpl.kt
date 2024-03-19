@@ -2,14 +2,12 @@ package br.com.androidprofessional.data.repository
 
 import br.com.androidprofessional.data.api.ExampleApiState
 import br.com.androidprofessional.data.datasource.RemoteDataSource
-import br.com.androidprofessional.data.model.ExampleResponse
 import br.com.androidprofessional.domain.mapper.ObjectToPresentationMapper
 import br.com.androidprofessional.domain.repository.YourRepository
 import br.com.androidprofessional.presentation.model.ObjectPresentation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
 /*
@@ -28,11 +26,6 @@ class YourRepositoryImpl(
 ) : YourRepository {
 
     private val mapper: ObjectToPresentationMapper = ObjectToPresentationMapper()
-//
-//    override suspend fun getExample(): Result<ObjectPresentation> {
-//        // retorne Result.failure em caso de alguma falha
-//        return Result.success(mapper.map(remoteDataSource.getExample()))
-//    }
 
     override suspend fun getExample(id: Int): Flow<ExampleApiState<ObjectPresentation>> = flow {
         val result = withContext(Dispatchers.IO) {

@@ -1,12 +1,9 @@
 package br.com.androidprofessional.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.androidprofessional.data.api.ExampleApiState
 import br.com.androidprofessional.data.api.Status
-import br.com.androidprofessional.data.model.ExampleResponse
 import br.com.androidprofessional.domain.usecase.GetExampleUseCase
 import br.com.androidprofessional.presentation.model.ObjectPresentation
 import kotlinx.coroutines.Dispatchers
@@ -31,38 +28,7 @@ import kotlinx.coroutines.launch
 class YourViewModel(
     private val useCase: GetExampleUseCase
 ) : ViewModel() {
-//
-//    private val _resultSuccess = MutableLiveData<Result<Boolean>>().apply { value = Result.success(false) }
-//
-//    val resultSuccess : LiveData<Result<Boolean>>
-//        get() = _resultSuccess
-//
-//    fun exampleCallCoroutines() {
-//
-//        viewModelScope.launch(Dispatchers.IO) {
-//
-//            runCatching {
-//                useCase()
-//            }.onSuccess {
-//
-//                // Do something case successful
-//                _resultSuccess.postValue(Result.success(true))
-//
-//            }.onFailure {
-//
-//                // Do something case failure
-//                _resultSuccess.postValue(Result.failure(it))
-//
-//            }
-//        }
-//    }
 
-    /**
-     * A commentData mutableStateflow which will store the Helper class CommentApiState
-     * which may store the api data or the failure state.
-     * Views can collect this data in background, as data is emitted whenever value changes, similar to livedata.
-     * Set the initial Value to Loading.
-     */
     val commentState = MutableStateFlow(
         ExampleApiState(
             Status.LOADING,

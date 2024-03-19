@@ -1,9 +1,6 @@
 package br.com.androidprofessional.domain.usecase
 
-import br.com.androidprofessional.data.api.ExampleApiState
-import br.com.androidprofessional.data.model.ExampleResponse
 import br.com.androidprofessional.domain.repository.YourRepository
-import kotlinx.coroutines.flow.Flow
 
 /*
 * Esta classe é responsável por realizar os casos de uso, chamando seu repository.
@@ -16,8 +13,6 @@ import kotlinx.coroutines.flow.Flow
 class GetExampleUseCase(
     private val repository: YourRepository
 ) {
-
-//    suspend operator fun invoke() = repository.getExample()
 
     suspend operator fun invoke(id: Int) = repository.getExample(id)
 }

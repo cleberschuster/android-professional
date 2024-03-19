@@ -1,11 +1,11 @@
 package br.com.androidprofessional.di
 
-import br.com.androidprofessional.data.retrofit.HttpClient
-import br.com.androidprofessional.data.retrofit.RetrofitClient
 import br.com.androidprofessional.data.api.YourService
 import br.com.androidprofessional.data.datasource.RemoteDataSource
 import br.com.androidprofessional.data.datasource.RemoteDataSourceImpl
 import br.com.androidprofessional.data.repository.YourRepositoryImpl
+import br.com.androidprofessional.data.retrofit.HttpClient
+import br.com.androidprofessional.data.retrofit.RetrofitClient
 import br.com.androidprofessional.domain.repository.YourRepository
 import br.com.androidprofessional.domain.usecase.GetExampleUseCase
 import br.com.androidprofessional.presentation.YourViewModel
