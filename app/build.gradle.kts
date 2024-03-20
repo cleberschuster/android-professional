@@ -67,6 +67,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
     implementation("androidx.work:work-runtime:2.9.0")
 
@@ -76,6 +78,9 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.airbnb.android:lottie:5.2.0")
+
+    // MATERIAL 3 - MATERIAL YOU STATUS BAR
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.32.0")
 
     // ViewBinding
 //    implementation("com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.0")

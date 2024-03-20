@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AppCompat"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.YourActivity"
+            android:name=".presentation.MainActivityCompose"
             android:exported="true"
             android:theme="@style/Theme.AppCompat">
             <intent-filter>

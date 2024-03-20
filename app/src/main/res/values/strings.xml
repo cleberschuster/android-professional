@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">Android Professional</string>
     <string name="comment_text">Comment Text</string>
+
+    <string name="empty"></string>
+    <string name="profile_name">Prog. De Elite</string>
+
+    <string name="bottom_bar_home">Home</string>
+    <string name="bottom_bar_profile">Profile</string>
+    <string name="bottom_bar_settings">Settings</string>
+
+    <string translatable="false" name="btn_row_cancel">Cancelar</string>
+    <string translatable="false" name="btn_row_maybe">Talvez</string>
+    <string translatable="false" name="btn_row_confirm">OK</string>
+
+    <string translatable="false" name="btn_template_name">Template</string>
+    <string name="exit_loading">Encerrar Loading</string>
+    <string name="enter_loading">Reiniciar Loading</string>
+    <string name="loading">Carregando…</string>
+    <string name="register_id">Número de registro</string>
+    <string name="activated">Ativado em:</string>
+    <string name="last_login">Último acesso:</string>
 </resources>
