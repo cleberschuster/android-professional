@@ -97,6 +97,7 @@ dependencies {
     implementation("io.insert-koin:koin-android:3.4.0")
     implementation("io.insert-koin:koin-android-ext:3.0.2")
     implementation("io.insert-koin:koin-androidx-workmanager:3.0.2")
+    implementation("io.insert-koin:koin-androidx-compose:3.4.1")
 
     // Gson || Retrofit
     implementation("com.squareup.okhttp3:okhttp:4.11.0")

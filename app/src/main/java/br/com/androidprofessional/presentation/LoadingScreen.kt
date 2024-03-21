@@ -23,6 +23,7 @@ import br.com.androidprofessional.ui.theme.ArsenalButton
 import br.com.androidprofessional.ui.theme.ArsenalTheme
 import br.com.androidprofessional.ui.theme.ArsenalThemeExtended
 import br.com.androidprofessional.utils.ArsenalCircularProgressIndicator
+import org.koin.androidx.compose.koinViewModel
 
 // 1) COMO OBSERVAR ESTADOS EM COMPOSE COM VIEWMODEL
 // 2) COMO CRIAR UM COMPONENTE REUTILIZÁVEL PARA LOADING SCREENS
@@ -32,7 +33,7 @@ import br.com.androidprofessional.utils.ArsenalCircularProgressIndicator
 // LINK VIDEO: https://youtu.be/kuwZX2fSj5A
 
 @Composable
-fun LoadingView(viewModel: ObserveStateViewModel, disposable: () -> Unit = {}) {
+fun LoadingView(viewModel: ObserveStateViewModel = koinViewModel(), disposable: () -> Unit = {}) {
 
     val uiState by viewModel.commentState.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
