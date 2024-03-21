@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -42,12 +43,20 @@ fun LoadingView(viewModel: ObserveStateViewModel, disposable: () -> Unit = {}) {
         }
     }
 
-//    val loading by viewModel.loadingStateFlow.collectAsState()
+    Column {
+        Text("Counter value: ${uiState.data}")
+        Button(onClick = { viewModel.getNewComment(2) }) {
+            Text("Increment")
+        }
+//        Button(onClick = { viewModel.getNewComment(binding.searchEditText.text.toString().toInt()) }) {
+//            Text("Increment")
+//        }
+    }
 
     when (uiState.status) {
 
         Status.SUCCESS -> {
-            viewModel.getNewComment(1)
+            Text("Counter value: ${uiState.data?.id}")
         }
 
         Status.ERROR -> TODO()
