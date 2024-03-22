@@ -34,6 +34,8 @@ class YourRepositoryImpl(
             }
             emit(ExampleApiState.success(result))
 
+        } catch (ex: Exception) {
+            emit(ExampleApiState.error(ex.toString()))
         } catch (ex: Throwable) {
             emit(ExampleApiState.error(ex.toString()))
         }
