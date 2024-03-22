@@ -33,16 +33,14 @@ import br.com.androidprofessional.ui.theme.AndroidProfessionalTheme
 import br.com.androidprofessional.ui.theme.ArsenalTheme
 
 class MainActivityCompose : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val mainViewModel: ObserveStateViewModel by viewModels()
-//        mainViewModel.setLoadingState(true)
 
         setContent {
             Surface(color = MaterialTheme.colorScheme.background) {
 //                ConstraintLayoutExample()
-                VideoSaveState(mainViewModel)
+                VideoSaveState()
             }
 
         }
@@ -60,26 +58,12 @@ private fun TelaComCompose() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun VideoSaveState(viewModel: ObserveStateViewModel) {
-    viewModel.getNewComment(1)
+private fun VideoSaveState() {
+//    viewModel.getNewComment(1)
 
     ArsenalTheme {
         Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { Text("Home") },
-//                    backgroundColor = MaterialTheme.colorScheme.onSecondary
-                )
-            },
-            floatingActionButtonPosition = FabPosition.End,
-            floatingActionButton = {
-                FloatingActionButton(onClick = {}) {
-                    Text("+")
-                }
-            },
-
-            content = { LoadingView(viewModel) }, // Video: https://youtu.be/kuwZX2fSj5A
-            bottomBar = { BottomAppBar { Text("Barra de Navegação") } }
+            content = { LoadingView() }
         )
     }
 }

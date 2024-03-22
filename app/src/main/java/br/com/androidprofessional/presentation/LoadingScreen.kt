@@ -33,10 +33,11 @@ import org.koin.androidx.compose.koinViewModel
 // LINK VIDEO: https://youtu.be/kuwZX2fSj5A
 
 @Composable
-fun LoadingView(viewModel: ObserveStateViewModel = koinViewModel(), disposable: () -> Unit = {}) {
-
+fun LoadingView() {
+    val viewModel: ObserveStateViewModel = koinViewModel()
     val uiState by viewModel.commentState.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
+    val disposable: () -> Unit = {}
 
     DisposableEffect(lifecycleOwner) {
         onDispose {
@@ -44,24 +45,24 @@ fun LoadingView(viewModel: ObserveStateViewModel = koinViewModel(), disposable: 
         }
     }
 
-    Column {
-        Text("Counter value: ${uiState.data}")
-        Button(onClick = { viewModel.getNewComment(2) }) {
-            Text("Increment")
-        }
-//        Button(onClick = { viewModel.getNewComment(binding.searchEditText.text.toString().toInt()) }) {
+//    Column {
+//        Text("Counter value: ${uiState.data}")
+//        Button(onClick = { viewModel.getNewComment(2) }) {
 //            Text("Increment")
 //        }
-    }
+////        Button(onClick = { viewModel.getNewComment(binding.searchEditText.text.toString().toInt()) }) {
+////            Text("Increment")
+////        }
+//    }
 
     when (uiState.status) {
 
         Status.SUCCESS -> {
-            Text("Counter value: ${uiState.data?.id}")
+            Text("Resultado: ${uiState.data?.comment}")
         }
 
-        Status.ERROR -> TODO()
-        Status.LOADING -> TODO()
+        Status.ERROR -> Text("Ocorreu um erro")
+        Status.LOADING -> Text("Carregando...")
     }
 }
 
