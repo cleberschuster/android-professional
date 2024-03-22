@@ -7,6 +7,7 @@ import br.com.androidprofessional.data.api.Status
 import br.com.androidprofessional.domain.usecase.GetExampleUseCase
 import br.com.androidprofessional.presentation.model.ObjectPresentation
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
@@ -43,7 +44,7 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
 
         //ApiCalls takes some time, So it has to be run and background thread. Using viewModelScope to call the api
         viewModelScope.launch(Dispatchers.IO) {
-
+            delay(4000)
             //Collecting the data emitted by the function in repository
 
             useCase.invoke(id)
