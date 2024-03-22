@@ -63,7 +63,7 @@ private fun VideoSaveState() {
 
     ArsenalTheme {
         Scaffold(
-            content = { LoadingView() }
+            content = { LoadingView(LocalContext.current) }
         )
     }
 }

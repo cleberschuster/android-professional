@@ -1,5 +1,7 @@
 package br.com.androidprofessional.presentation
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -33,7 +35,7 @@ import org.koin.androidx.compose.koinViewModel
 // LINK VIDEO: https://youtu.be/kuwZX2fSj5A
 
 @Composable
-fun LoadingView() {
+fun LoadingView(context: Context) {
     val viewModel: ObserveStateViewModel = koinViewModel()
     val uiState by viewModel.commentState.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -61,7 +63,7 @@ fun LoadingView() {
             Text("Resultado: ${uiState.data?.comment}")
         }
 
-        Status.ERROR -> Text("Ocorreu um erro")
+        Status.ERROR -> Toast.makeText(context, "Ocorreu um erro, tenta novamente", Toast.LENGTH_SHORT).show()
         Status.LOADING -> Text("Carregando...")
     }
 }
