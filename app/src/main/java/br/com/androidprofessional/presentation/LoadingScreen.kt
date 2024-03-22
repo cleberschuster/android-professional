@@ -6,7 +6,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,8 +21,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.androidprofessional.R
 import br.com.androidprofessional.data.api.Status
@@ -60,9 +70,45 @@ fun LoadingView(context: Context) {
     when (uiState.status) {
 
         Status.SUCCESS -> {
-            Text("Resultado: ${uiState.data?.comment}")
-        }
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 16.dp)
+            ) {
+                Card(
+//                modifier = Modifier
+//                    .size((LocalConfiguration.current.screenWidthDp.dp)/0),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color.White
+                    ),
+                    elevation = CardDefaults.cardElevation(8.dp),
+                    shape = RoundedCornerShape(10),
+                ) {
 
+                    Text(
+                        modifier = Modifier.padding(vertical = 16.dp),
+                        text = "Resultado: ${uiState.data?.comment}",
+                        style = TextStyle(fontSize = 16.sp)
+                    )
+                    Text(
+                        modifier = Modifier.padding(vertical = 16.dp),
+                        text = "Resultado: ${uiState.data?.email}",
+                        style = TextStyle(fontSize = 16.sp)
+                    )
+                    Text(
+                        modifier = Modifier.padding(vertical = 16.dp),
+                        text = "Resultado: ${uiState.data?.name}",
+                        style = TextStyle(fontSize = 16.sp)
+                    )
+                    Text(
+                        modifier = Modifier.padding(vertical = 16.dp),
+                        text = "Resultado: ${uiState.data?.id}",
+                        style = TextStyle(fontSize = 16.sp)
+                    )
+                }
+
+            }
+        }
         Status.ERROR -> Toast.makeText(context, "Ocorreu um erro, tenta novamente", Toast.LENGTH_SHORT).show()
         Status.LOADING -> Text("Carregando...")
     }
