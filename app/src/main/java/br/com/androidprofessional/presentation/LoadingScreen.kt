@@ -2,52 +2,29 @@ package br.com.androidprofessional.presentation
 
 import android.content.Context
 import android.widget.Toast
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import br.com.androidprofessional.R
 import br.com.androidprofessional.data.api.Status
-import br.com.androidprofessional.ui.theme.ArsenalButton
-import br.com.androidprofessional.ui.theme.ArsenalTheme
-import br.com.androidprofessional.ui.theme.ArsenalThemeExtended
-import br.com.androidprofessional.utils.ArsenalCircularProgressIndicator
 import org.koin.androidx.compose.koinViewModel
-
-// 1) COMO OBSERVAR ESTADOS EM COMPOSE COM VIEWMODEL
-// 2) COMO CRIAR UM COMPONENTE REUTILIZÁVEL PARA LOADING SCREENS
-// 3) COMO PASSAR ESTADO PARA COMPOSABLE E COMO ALTERA-LO (LOADING VIEW)
-// 4) COMO INSTANCIAR O FLOW NO PREVIEW USANDO VIEW MODEL
-
-// LINK VIDEO: https://youtu.be/kuwZX2fSj5A
 
 @Composable
 fun LoadingView(context: Context) {
     val viewModel: ObserveStateViewModel = koinViewModel()
-    val uiState by viewModel.commentState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
     val disposable: () -> Unit = {}
 
