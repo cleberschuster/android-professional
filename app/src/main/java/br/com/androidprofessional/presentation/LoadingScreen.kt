@@ -46,6 +46,8 @@ fun LoadingView(context: Context) {
 
     when (uiState.status) {
 
+        Status.LOADING -> Text("Carregando...")
+
         Status.SUCCESS -> {
             Column(
                 modifier = Modifier
@@ -86,8 +88,8 @@ fun LoadingView(context: Context) {
 
             }
         }
-        Status.ERROR -> Toast.makeText(context, "Ocorreu um erro, tenta novamente", Toast.LENGTH_SHORT).show()
-        Status.LOADING -> Text("Carregando...")
+
+        Status.ERROR -> Toast.makeText(context, "Ocorreu um erro ${uiState.message}", Toast.LENGTH_SHORT).show()
     }
 }
 

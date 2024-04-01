@@ -28,16 +28,17 @@ class YourRepositoryImpl(
     private val mapper: ObjectToPresentationMapper = ObjectToPresentationMapper()
 
     override suspend fun getExample(id: Int): Flow<ExampleApiState<ObjectPresentation>> = flow {
-        try {
+//        try {
             val result = withContext(Dispatchers.IO) {
                 mapper.map(remoteDataSource.getExample(id))
             }
             emit(ExampleApiState.success(result))
 
-        } catch (ex: Exception) {
-            emit(ExampleApiState.error(ex.toString()))
-        } catch (ex: Throwable) {
-            emit(ExampleApiState.error(ex.toString()))
         }
-    }
+//        catch (ex: Exception) {
+//            emit(ExampleApiState.error(ex.toString()))
+//        } catch (ex: Throwable) {
+//            emit(ExampleApiState.error(ex.toString()))
+//        }
+//    }
 }

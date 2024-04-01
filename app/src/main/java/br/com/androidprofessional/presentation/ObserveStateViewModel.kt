@@ -51,8 +51,9 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
             //Collecting the data emitted by the function in repository
 
             useCase.invoke(id)
-                .onStart {  }
-                .onCompletion { }
+//                .onStart {  }
+//                .onCompletion { }
+
                 //If any errors occurs like 404 not found or invalid query, set the state to error State to show some info
                 //on screen
                 .catch {
