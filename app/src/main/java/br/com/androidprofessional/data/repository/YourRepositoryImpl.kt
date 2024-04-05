@@ -35,8 +35,13 @@ class YourRepositoryImpl(
             emit(ExampleApiState.success(result))
 
         }
-//        catch (ex: Exception) {
-//            emit(ExampleApiState.error(ex.toString()))
+//        catch (ex: CompanyCustomException) {
+//            if (ex.response.code == 204) {
+//                emit(ExampleApiState.success("alga aqui pra comparar"))
+//            } else {
+//                emit(ExampleApiState.error(ex.toString()))
+//            }
+//
 //        } catch (ex: Throwable) {
 //            emit(ExampleApiState.error(ex.toString()))
 //        }
