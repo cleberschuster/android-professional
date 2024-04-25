@@ -5,6 +5,7 @@ import br.com.androidprofessional.data.datasource.RemoteDataSource
 import br.com.androidprofessional.domain.mapper.ObjectToPresentationMapper
 import br.com.androidprofessional.domain.repository.YourRepository
 import br.com.androidprofessional.presentation.model.ObjectPresentation
+import br.com.androidprofessional.utils.YourCompanyException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -35,9 +36,9 @@ class YourRepositoryImpl(
             emit(ExampleApiState.success(result))
 
         }
-//        catch (ex: CompanyCustomException) {
-//            if (ex.response.code == 204) {
-//                emit(ExampleApiState.success("alga aqui pra comparar"))
+//        catch (ex: YourCompanyException) {
+//            if (ex.apiError?.code == "204") {
+//                emit(ExampleApiState.success("algo pra emitir e para na view"))
 //            } else {
 //                emit(ExampleApiState.error(ex.toString()))
 //            }

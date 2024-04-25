@@ -66,22 +66,27 @@ fun LoadingView(context: Context) {
 
                     Text(
                         modifier = Modifier.padding(vertical = 16.dp),
-                        text = "Resultado: ${uiState.data?.comment}",
+                        text = "COMENTARIO: ${uiState.data?.comment}",
                         style = TextStyle(fontSize = 16.sp)
                     )
                     Text(
                         modifier = Modifier.padding(vertical = 16.dp),
-                        text = "Resultado: ${uiState.data?.email}",
+                        text = "EMAIL: ${uiState.data?.email}",
                         style = TextStyle(fontSize = 16.sp)
                     )
                     Text(
                         modifier = Modifier.padding(vertical = 16.dp),
-                        text = "Resultado: ${uiState.data?.name}",
+                        text = "NOME: ${uiState.data?.name}",
                         style = TextStyle(fontSize = 16.sp)
                     )
                     Text(
                         modifier = Modifier.padding(vertical = 16.dp),
-                        text = "Resultado: ${uiState.data?.id}",
+                        text = "ID: ${uiState.data?.id}",
+                        style = TextStyle(fontSize = 16.sp)
+                    )
+                    Text(
+                        modifier = Modifier.padding(vertical = 16.dp),
+                        text = "POST ID: ${uiState.data?.postId}",
                         style = TextStyle(fontSize = 16.sp)
                     )
                 }
@@ -89,7 +94,7 @@ fun LoadingView(context: Context) {
             }
         }
 
-        Status.ERROR -> Toast.makeText(context, "Ocorreu um erro ${uiState.message}", Toast.LENGTH_SHORT).show()
+        Status.ERROR -> Toast.makeText(context, "Ocorreu um erro ${uiState.message}", Toast.LENGTH_LONG).show()
     }
 }
 
