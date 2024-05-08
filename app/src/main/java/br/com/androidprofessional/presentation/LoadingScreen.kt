@@ -6,12 +6,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -26,6 +28,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -76,13 +79,39 @@ fun LoadingView(context: Context) {
                     elevation = CardDefaults.cardElevation(8.dp),
                     shape = RoundedCornerShape(10),
                 ) {
-                    var search by rememberSaveable(stateSaver = TextFieldValue.Saver) {
-                        mutableStateOf(TextFieldValue())
-                    }
 
+                    //Inicio Faz a Busca quando clica no botao
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+
+                        val textState = remember { mutableStateOf("") }
+                        TextField(
+                            placeholder = { Text("Pesquisar") },
+                            value = textState.value,
+                            onValueChange = { textState.value = it },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Number
+                            )
+                        )
+                        IconButton(onClick = {
+                            viewModel.getNewComment(textState.value.toInt())
+                        }) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_warning),
+                                contentDescription = null,
+                            )
+                        }
+                        Text("INFO: ${textState.value}")
+                    }//Fim Faz a Busca quando clica no botao
+
+                    //Inicio Faz uma nova Busca a cada caractere digitado
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            var search by rememberSaveable(stateSaver = TextFieldValue.Saver) {
+                                mutableStateOf(TextFieldValue())
+                            }
 
                         SearchTextField(
                             value = search, onValueChange = {
@@ -99,7 +128,7 @@ fun LoadingView(context: Context) {
                                 contentDescription = null,
                             )
                         }
-                    }
+                    }                     //Fim Faz uma nova Busca a cada caractere digitado
 
                     Text(
                         modifier = Modifier.padding(vertical = 16.dp),
