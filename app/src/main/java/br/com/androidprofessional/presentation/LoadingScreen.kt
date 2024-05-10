@@ -121,7 +121,7 @@ fun LoadingView(context: Context) {
                             color = MaterialTheme.colorScheme.background
                         )
                         IconButton(onClick = {
-                            viewModel.getNewComment(1)
+                            viewModel.getNewComment(search.text.toInt())
                         }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_warning),
