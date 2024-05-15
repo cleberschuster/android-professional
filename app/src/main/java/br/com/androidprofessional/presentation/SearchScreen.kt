@@ -96,9 +96,11 @@ private fun SearchAppBar(
             // If user makes changes to text, immediately updated it.
             query = onQueryChanged
             // To avoid crash, only query when string isn't empty.
-            if (onQueryChanged.isNotEmpty()) {
+            if (query.isNotEmpty()) {
                 // Pass latest query to refresh search results.
                 viewModel.performQuery(query)
+            } else {
+                viewModel.loadActors()
             }
         },
         leadingIcon = {
@@ -110,7 +112,7 @@ private fun SearchAppBar(
         },
         trailingIcon = {
             if (showClearIcon) {
-                IconButton(onClick = { query = "" }) {
+                IconButton(onClick = { query = ""; viewModel.loadActors() }) {
                     Icon(
                         imageVector = Icons.Rounded.Clear,
                         tint = MaterialTheme.colorScheme.onBackground,
