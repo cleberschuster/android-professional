@@ -35,7 +35,7 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
 
     init {
         //Initiate a starting search with comment Id 1
-        getNewComment(1)
+        getNewComment(5)
     }
 
 
@@ -47,7 +47,7 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
 
         //ApiCalls takes some time, So it has to be run and background thread. Using viewModelScope to call the api
         viewModelScope.launch(Dispatchers.IO) {
-            delay(4000)
+            delay(2000)
             //Collecting the data emitted by the function in repository
 
             useCase.invoke(id)

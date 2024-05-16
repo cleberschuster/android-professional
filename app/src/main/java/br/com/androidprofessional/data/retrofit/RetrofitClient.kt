@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 */
 
 private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+private const val URL_LOCAL_HOST = "http://10.0.2.2:8080"
 //private const val BASE_URL = "https://your.base.url.here.com"
 private const val CACHE_SIZE = 5 * 1024 * 1024L // 5 MB de cache
 
@@ -32,8 +33,8 @@ class RetrofitClient(
 
     private val okHttp: OkHttpClient by lazy {
         OkHttpClient.Builder()
-            .cache(cacheSize())
-            .addNetworkInterceptor(CacheInterceptor)
+//            .cache(cacheSize())
+//            .addNetworkInterceptor(CacheInterceptor)
             .build()
     }
 
@@ -45,7 +46,7 @@ class RetrofitClient(
             .build()
     }
 
-    private fun cacheSize(): Cache {
-        return Cache(application.cacheDir, CACHE_SIZE)
-    }
+//    private fun cacheSize(): Cache {
+//        return Cache(application.cacheDir, CACHE_SIZE)
+//    }
 }

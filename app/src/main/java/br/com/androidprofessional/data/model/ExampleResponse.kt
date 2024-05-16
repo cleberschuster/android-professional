@@ -20,6 +20,6 @@ data class ExampleResponse(
     val email: String?=null,
     val name:String?=null,
 
-    @SerializedName("body")
+    @SerializedName("comment")
     val comment: String?=null
 )

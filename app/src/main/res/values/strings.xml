@@ -2,6 +2,8 @@
     <string name="app_name">Android Professional</string>
     <string name="comment_text">Comment Text</string>
 
+    <string name="search">search</string>
+
     <string name="empty"></string>
     <string name="profile_name">Prog. De Elite</string>
 

@@ -100,6 +100,8 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-workmanager:3.0.2")
     implementation("io.insert-koin:koin-androidx-compose:3.4.1")
 
+//    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+
     // Gson || Retrofit
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
