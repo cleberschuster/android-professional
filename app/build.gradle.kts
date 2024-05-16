@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -101,6 +102,8 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-compose:3.4.1")
 
 //    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+
+    implementation("io.coil-kt:coil-compose:2.6.0")
 
     // Gson || Retrofit
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
