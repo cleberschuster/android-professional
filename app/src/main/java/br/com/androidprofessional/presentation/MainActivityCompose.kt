@@ -41,9 +41,9 @@ class MainActivityCompose : ComponentActivity() {
         setContent {
             Surface(color = MaterialTheme.colorScheme.background) {
 //                ConstraintLayoutExample()
-                RootScreen()
+//                RootScreen()
 //                SearchScreen()
-//                VideoSaveState()
+                VideoSaveState()
             }
 
         }
