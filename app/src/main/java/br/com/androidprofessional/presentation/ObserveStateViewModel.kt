@@ -23,7 +23,7 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
         ExampleApiState(
             status =  Status.LOADING,
             data =  ObjectPresentation(),
-            message =  ""
+            message = null
         )
     )
 
@@ -72,7 +72,8 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
                     _uiState.update { uiState ->
                         uiState.copy(
                             status = Status.SUCCESS,
-                            data = response.data
+                            data = response.data,
+                            message =  ""
                         )
                     }
                 }
