@@ -156,7 +156,7 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel) {
             )
         }
         Status.ERROR -> Toast.makeText(context, "Ocorreu um erro ${uiState.message}", Toast.LENGTH_LONG).show()
-        Status.LOADING -> Text("Carregando...")
+        Status.LOADING -> ShimmerScreen()
     }
 }
 
