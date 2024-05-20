@@ -81,24 +81,24 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel) {
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        val textState = remember { mutableStateOf("") }
+        var textState by remember { mutableStateOf("") }
         TextField(
             placeholder = { Text("Pesquisar") },
-            value = textState.value,
-            onValueChange = { textState.value = it },
+            value = textState,
+            onValueChange = { textState = it },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             )
         )
         IconButton(onClick = {
-            viewModel.getNewComment(textState.value.toInt())
+            viewModel.getNewComment(textState.toInt())
         }) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_warning),
                 contentDescription = null,
             )
         }
-        Text("INFO: ${textState.value}")
+        Text("INFO: ${textState}")
     }//Fim Faz a Busca quando clica no botao
 
     //Inicio Faz uma nova Busca a cada caractere digitado
@@ -112,7 +112,7 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel) {
         SearchTextField(
             value = search, onValueChange = {
                 search = it
-                viewModel.getNewComment(it.text.toInt())
+                viewModel.getNewComment(search.text.toInt())
             }, hint = stringResource(R.string.search),
             color = MaterialTheme.colorScheme.background
         )
