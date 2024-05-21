@@ -41,9 +41,9 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
 
     //Function to get new Comments
     fun getNewComment(id: Int) {
-
         //Since Network Calls takes time,Set the initial value to loading state
-        _uiState.value = ExampleApiState.loading()
+        _uiState.update { it.copy(Status.LOADING) }
+//        _uiState.value = ExampleApiState.loading()
 
         //ApiCalls takes some time, So it has to be run and background thread. Using viewModelScope to call the api
         viewModelScope.launch(Dispatchers.IO) {
