@@ -63,7 +63,6 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
                     _uiState.update { uiState ->
                         uiState.copy(
                             status = Status.ERROR,
-                            data = null,
                             message = it.message
                         )
                     }
@@ -74,7 +73,6 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
                         uiState.copy(
                             status = Status.SUCCESS,
                             data = response.data,
-                            message = null
                         )
                     }
                 }
