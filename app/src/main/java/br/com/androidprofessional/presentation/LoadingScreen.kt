@@ -2,8 +2,12 @@ package br.com.androidprofessional.presentation
 
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -129,31 +133,53 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel) {
     when (uiState.status) {
         Status.SUCCESS -> {
 
-            Text(
-                modifier = Modifier.padding(vertical = 16.dp),
-                text = "COMENTARIO: ${uiState.data?.comment}",
-                style = TextStyle(fontSize = 16.sp)
-            )
-            Text(
-                modifier = Modifier.padding(vertical = 16.dp),
-                text = "EMAIL: ${uiState.data?.email}",
-                style = TextStyle(fontSize = 16.sp)
-            )
-            Text(
-                modifier = Modifier.padding(vertical = 16.dp),
-                text = "NOME: ${uiState.data?.name}",
-                style = TextStyle(fontSize = 16.sp)
-            )
-            Text(
-                modifier = Modifier.padding(vertical = 16.dp),
-                text = "ID: ${uiState.data?.id}",
-                style = TextStyle(fontSize = 16.sp)
-            )
-            Text(
-                modifier = Modifier.padding(vertical = 16.dp),
-                text = "POST ID: ${uiState.data?.postId}",
-                style = TextStyle(fontSize = 16.sp)
-            )
+            Box(
+                modifier = Modifier
+//            .fillMaxSize()
+                    .background(color = Color.White)
+                    .padding(48.dp)
+            ) {
+                Column(
+                    modifier = Modifier.align(alignment = Alignment.TopCenter)
+                ) {
+
+                    Column {
+                        Text(
+                            modifier = Modifier.padding(vertical = 16.dp),
+                            text = "COMENTARIO: ${uiState.data?.comment}",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+
+                        Spacer(modifier = Modifier.padding(4.dp))
+                        Text(
+                            modifier = Modifier.padding(vertical = 16.dp),
+                            text = "EMAIL: ${uiState.data?.email}",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+
+                        Spacer(modifier = Modifier.padding(4.dp))
+                        Text(
+                            modifier = Modifier.padding(vertical = 16.dp),
+                            text = "NOME: ${uiState.data?.name}",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+
+                        Spacer(modifier = Modifier.padding(4.dp))
+                        Text(
+                            modifier = Modifier.padding(vertical = 16.dp),
+                            text = "ID: ${uiState.data?.id}",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+
+                        Spacer(modifier = Modifier.padding(4.dp))
+                        Text(
+                            modifier = Modifier.padding(vertical = 16.dp),
+                            text = "POST ID: ${uiState.data?.postId}",
+                            style = TextStyle(fontSize = 16.sp)
+                        )
+                    }
+                }
+            }
         }
         Status.ERROR -> Toast.makeText(context, "Ocorreu um erro ${uiState.message}", Toast.LENGTH_LONG).show()
         Status.LOADING -> ShimmerScreen()
