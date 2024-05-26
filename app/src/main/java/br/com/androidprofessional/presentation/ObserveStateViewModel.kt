@@ -38,7 +38,6 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
         getNewComment(5)
     }
 
-
     //Function to get new Comments
     fun getNewComment(id: Int) {
         //Since Network Calls takes time,Set the initial value to loading state
@@ -60,8 +59,8 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
                         //Assim tambem funciona, avaliar se com o copyc é o melhor
 //                    _uiState.value = ExampleApiState.error(it.message.toString())
 
-                    _uiState.update { uiState ->
-                        uiState.copy(
+                    _uiState.update { currentState ->
+                        currentState.copy(
                             status = Status.ERROR,
                             message = it.message
                         )
@@ -69,8 +68,8 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
                 }
                 //If Api call is succeeded, set the State to Success and set the response data to data received from api
                 .collect { response ->
-                    _uiState.update { uiState ->
-                        uiState.copy(
+                    _uiState.update { currentState ->
+                        currentState.copy(
                             status = Status.SUCCESS,
                             data = response.data,
                         )
