@@ -119,7 +119,14 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel) {
             ),
             value = search, onValueChange = {
                 search = it
-                viewModel.getNewComment(search.text.toInt())
+
+                if (search.text.isNotEmpty()) {
+                    // Pass latest query to refresh search results.
+                    viewModel.getNewComment(search.text.toInt())
+                } else {
+                    Toast.makeText(context, "O text field esta vazio", Toast.LENGTH_LONG).show()
+                }
+
             }, hint = stringResource(R.string.search),
             color = MaterialTheme.colorScheme.background
         )
