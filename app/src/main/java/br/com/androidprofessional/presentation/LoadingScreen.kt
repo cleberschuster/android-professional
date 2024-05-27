@@ -117,7 +117,8 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel) {
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
             ),
-            value = search, onValueChange = {
+            value = search,
+            onValueChange = {
                 search = it
 
                 if (search.text.isNotEmpty()) {
