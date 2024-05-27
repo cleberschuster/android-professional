@@ -130,14 +130,6 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel) {
             }, hint = stringResource(R.string.search),
             color = MaterialTheme.colorScheme.background
         )
-        IconButton(onClick = {
-            viewModel.getNewComment(search.text.toInt())
-        }) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_warning),
-                contentDescription = null,
-            )
-        }
     }                     //Fim Faz uma nova Busca a cada caractere digitado
 
     when (uiState.status) {
