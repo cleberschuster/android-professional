@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.androidprofessional.data.api.ExampleApiState
 import br.com.androidprofessional.data.api.Status
+import br.com.androidprofessional.data.api.toErrorType
 import br.com.androidprofessional.domain.usecase.GetExampleUseCase
 import br.com.androidprofessional.presentation.model.ObjectPresentation
 import kotlinx.coroutines.Dispatchers
@@ -62,7 +63,8 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
                     _uiState.update { currentState ->
                         currentState.copy(
                             status = Status.ERROR,
-                            message = it.message
+//                            message = it.message
+                            message = it.toErrorType().toString()
                         )
                     }
                 }
