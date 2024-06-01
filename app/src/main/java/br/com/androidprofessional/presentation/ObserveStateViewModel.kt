@@ -57,15 +57,25 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
                 //If any errors occurs like 404 not found or invalid query, set the state to error State to show some info
                 //on screen
                 .catch {
-                        //Assim tambem funciona, avaliar se com o copyc é o melhor
+                    //Assim tambem funciona, avaliar se com o copyc é o melhor
 //                    _uiState.value = ExampleApiState.error(it.message.toString())
 
-                    _uiState.update { currentState ->
-                        currentState.copy(
-                            status = Status.ERROR,
+                    if (it.toErrorType().toString() == "404") {
+                        _uiState.update { currentState ->
+                            currentState.copy(
+                                status = Status.ERROR,
 //                            message = it.message
-                            message = it.toErrorType().toString()
-                        )
+                                message = " 404, faça a logica com o tipo do erro"
+                            )
+                        }
+                    } else {
+                        _uiState.update { currentState ->
+                            currentState.copy(
+                                status = Status.ERROR,
+//                            message = it.message
+                                message = it.toErrorType().toString()
+                            )
+                        }
                     }
                 }
                 //If Api call is succeeded, set the State to Success and set the response data to data received from api
