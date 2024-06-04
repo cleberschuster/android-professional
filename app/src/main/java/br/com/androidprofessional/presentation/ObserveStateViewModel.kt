@@ -48,7 +48,8 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
 //              .onStart {  }
 //              .onCompletion { }
 
-                //Trata erros de downstream
+                //Se o .catch() não pegar nenhuma excessao, este .onEach() é executado
+                // e consegue pegar excessoes de downstream se acontecer e dai sim  mandar para o .catch()
                 .onEach {
                     _uiState.update { currentState ->
                         currentState.copy(
