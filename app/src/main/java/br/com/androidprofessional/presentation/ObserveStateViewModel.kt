@@ -53,7 +53,7 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
                     _uiState.update { currentState ->
                         currentState.copy(
                             status = Status.SUCCESS,
-                            data = it.data,
+                            data = throw Exception(),
                         )
                     }
                 }
@@ -77,7 +77,9 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
                         }
                     }
                 }
-                // Substitui o collect() e possibilita tratar excessoes de downstream quando usamos o .onEach()
+                // Substitui o .collect() e possibilita tratar excessoes de downstream, que acontecem dentro do collect() ou do onEach()
+                // e não são capturadas pelo .cath() que só captura excessoes de upstream vindas do repositorio.
+                // Quando usamos o .onEach() e o .launchIn() essas possiveis excessoes de downstream já são capturadas e dai sim jogadas no .catch()
                 .launchIn(this)
         }
     }
