@@ -54,7 +54,7 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
                     _uiState.update { currentState ->
                         currentState.copy(
                             status = Status.SUCCESS,
-                            data = throw Exception(),
+                            data = it.data,
                         )
                     }
                 }
