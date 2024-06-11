@@ -47,8 +47,7 @@ import br.com.androidprofessional.presentation.model.ObjectPresentation
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun LoadingView(context: Context) {
-    val viewModel: ObserveStateViewModel = koinViewModel()
+fun LoadingView(context: Context, viewModel: ObserveStateViewModel = koinViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
     val disposable: () -> Unit = {}
