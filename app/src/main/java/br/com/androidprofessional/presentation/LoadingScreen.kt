@@ -91,7 +91,7 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        var textState by remember { mutableStateOf("") }
+        var textState by rememberSaveable { mutableStateOf("") }
         TextField(
             placeholder = { Text("Pesquisar") },
             value = textState,
