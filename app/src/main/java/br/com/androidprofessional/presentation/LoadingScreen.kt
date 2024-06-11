@@ -25,6 +25,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -44,6 +45,7 @@ import br.com.androidprofessional.R
 import br.com.androidprofessional.data.api.ExampleApiState
 import br.com.androidprofessional.data.api.Status
 import br.com.androidprofessional.presentation.model.ObjectPresentation
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -83,7 +85,7 @@ fun LoadingView(context: Context, viewModel: ObserveStateViewModel = koinViewMod
 
 @Composable
 fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue: ExampleApiState<ObjectPresentation>) {
-
+    val scope = rememberCoroutineScope()
     //Inicio Faz a Busca quando clica no botao
     Row(
         verticalAlignment = Alignment.CenterVertically
@@ -99,7 +101,9 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue
             )
         )
         IconButton(onClick = {
-            viewModel.getNewComment(textState.toInt())
+
+            scope.launch { viewModel.getNewComment(textState.toInt()) }
+
         }) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_warning),
@@ -127,7 +131,8 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue
 
                 if (search.text.isNotEmpty()) {
                     // Pass latest query to refresh search results.
-                    viewModel.getNewComment(search.text.toInt())
+                    scope.launch { viewModel.getNewComment(search.text.toInt()) }
+
                 } else {
                     Toast.makeText(context, "O text field esta vazio", Toast.LENGTH_LONG).show()
                 }
