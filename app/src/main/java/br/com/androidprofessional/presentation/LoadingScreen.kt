@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,12 +41,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.androidprofessional.R
+import br.com.androidprofessional.data.api.ExampleApiState
 import br.com.androidprofessional.data.api.Status
+import br.com.androidprofessional.presentation.model.ObjectPresentation
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun LoadingView(context: Context) {
     val viewModel: ObserveStateViewModel = koinViewModel()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val disposable: () -> Unit = {}
+
+//    LaunchedEffect(uiState){}
+
+    DisposableEffect(lifecycleOwner) {
+        onDispose {
+            disposable.invoke()
+        }
+    }
+
 
     Column(
         modifier = Modifier
@@ -62,23 +77,13 @@ fun LoadingView(context: Context) {
             shape = RoundedCornerShape(10),
         ) {
 
-            CarsContent(context, viewModel)
+            CarsContent(context, viewModel, uiState)
         }
     }
 }
 
 @Composable
-fun CarsContent(context: Context, viewModel: ObserveStateViewModel) {
-
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val lifecycleOwner = LocalLifecycleOwner.current
-    val disposable: () -> Unit = {}
-
-    DisposableEffect(lifecycleOwner) {
-        onDispose {
-            disposable.invoke()
-        }
-    }
+fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue: ExampleApiState<ObjectPresentation>) {
 
     //Inicio Faz a Busca quando clica no botao
     Row(
@@ -133,7 +138,7 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel) {
         )
     }                     //Fim Faz uma nova Busca a cada caractere digitado
 
-    when (uiState.status) {
+    when (uiStateValue.status) {
         Status.SUCCESS -> {
 
             Box(
@@ -149,45 +154,70 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel) {
                     Column {
                         Text(
                             modifier = Modifier.padding(vertical = 16.dp),
-                            text = "COMENTARIO: ${uiState.data?.comment}",
+                            text = "COMENTARIO: ${uiStateValue.data?.comment}",
                             style = TextStyle(fontSize = 16.sp)
                         )
 
                         Spacer(modifier = Modifier.padding(4.dp))
                         Text(
                             modifier = Modifier.padding(vertical = 16.dp),
-                            text = "EMAIL: ${uiState.data?.email}",
+                            text = "EMAIL: ${uiStateValue.data?.email}",
                             style = TextStyle(fontSize = 16.sp)
                         )
 
                         Spacer(modifier = Modifier.padding(4.dp))
                         Text(
                             modifier = Modifier.padding(vertical = 16.dp),
-                            text = "NOME: ${uiState.data?.name}",
+                            text = "NOME: ${uiStateValue.data?.name}",
                             style = TextStyle(fontSize = 16.sp)
                         )
 
                         Spacer(modifier = Modifier.padding(4.dp))
                         Text(
                             modifier = Modifier.padding(vertical = 16.dp),
-                            text = "ID: ${uiState.data?.id}",
+                            text = "ID: ${uiStateValue.data?.id}",
                             style = TextStyle(fontSize = 16.sp)
                         )
 
                         Spacer(modifier = Modifier.padding(4.dp))
                         Text(
                             modifier = Modifier.padding(vertical = 16.dp),
-                            text = "POST ID: ${uiState.data?.postId}",
+                            text = "POST ID: ${uiStateValue.data?.postId}",
                             style = TextStyle(fontSize = 16.sp)
                         )
                     }
                 }
             }
         }
-        Status.ERROR -> Toast.makeText(context, "Ocorreu um erro ${uiState.message}", Toast.LENGTH_LONG).show()
+        Status.ERROR -> Toast.makeText(context, "Ocorreu um erro ${uiStateValue.message}", Toast.LENGTH_LONG).show()
         Status.LOADING -> ShimmerScreen()
     }
 }
+
+
+//Exwemplo Hoisting State
+//@Composable
+//fun MyScreen(viewModel: MyViewModel) {
+//    val uiState by viewModel.uiState.collectAsState()
+//    DisplayButton(
+//        text = uiState.counter.toString(),
+//        onClick = { viewModel.incrementCounter() }
+//    )
+//}
+//@Composable
+//fun DisplayButton(
+//    text: String,
+//    onClick: () -> Unit
+//) {
+//    Column {
+//        Text( text = "Counter value: $text")
+//        Button( onClick = onClick) {
+//            Text( "Increment" )
+//        }
+//    }
+//}
+
+
 
 //@Preview
 //@Composable
