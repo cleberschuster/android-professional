@@ -85,7 +85,7 @@ fun LoadingView(context: Context, viewModel: ObserveStateViewModel = koinViewMod
 
 @Composable
 fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue: ExampleApiState<ObjectPresentation>) {
-    val scope = rememberCoroutineScope()
+    val coroutineScope = rememberCoroutineScope()
     //Inicio Faz a Busca quando clica no botao
     Row(
         verticalAlignment = Alignment.CenterVertically
@@ -102,7 +102,7 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue
         )
         IconButton(onClick = {
 
-            scope.launch { viewModel.getNewComment(textState.toInt()) }
+            coroutineScope.launch { viewModel.getNewComment(textState.toInt()) }
             Toast.makeText(context, "Call APi onClick", Toast.LENGTH_SHORT).show()
 
         }) {
@@ -132,7 +132,7 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue
 
                 if (search.text.isNotEmpty()) {
                     // Pass latest query to refresh search results.
-                    scope.launch { viewModel.getNewComment(search.text.toInt()) }
+                    coroutineScope.launch { viewModel.getNewComment(search.text.toInt()) }
                     Toast.makeText(context, "Call APi onValueChange", Toast.LENGTH_SHORT).show()
 
                 } else {
