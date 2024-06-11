@@ -103,6 +103,7 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue
         IconButton(onClick = {
 
             scope.launch { viewModel.getNewComment(textState.toInt()) }
+            Toast.makeText(context, "Call APi onClick", Toast.LENGTH_SHORT).show()
 
         }) {
             Icon(
@@ -132,9 +133,10 @@ fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue
                 if (search.text.isNotEmpty()) {
                     // Pass latest query to refresh search results.
                     scope.launch { viewModel.getNewComment(search.text.toInt()) }
+                    Toast.makeText(context, "Call APi onValueChange", Toast.LENGTH_SHORT).show()
 
                 } else {
-                    Toast.makeText(context, "O text field esta vazio", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "O text field esta vazio", Toast.LENGTH_SHORT).show()
                 }
 
             }, hint = stringResource(R.string.search),
