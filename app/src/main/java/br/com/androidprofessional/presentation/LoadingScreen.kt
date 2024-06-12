@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -49,7 +50,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun LoadingView(context: Context, viewModel: ObserveStateViewModel = koinViewModel()) {
+fun LoadingView(viewModel: ObserveStateViewModel = koinViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
     val disposable: () -> Unit = {}
@@ -78,14 +79,15 @@ fun LoadingView(context: Context, viewModel: ObserveStateViewModel = koinViewMod
             shape = RoundedCornerShape(10),
         ) {
 
-            CarsContent(context, viewModel, uiState)
+            CarsContent(viewModel, uiState)
         }
     }
 }
 
 @Composable
-fun CarsContent(context: Context, viewModel: ObserveStateViewModel, uiStateValue: ExampleApiState<ObjectPresentation>) {
+fun CarsContent(viewModel: ObserveStateViewModel, uiStateValue: ExampleApiState<ObjectPresentation>) {
     val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
     //Inicio Faz a Busca quando clica no botao
     Row(
         verticalAlignment = Alignment.CenterVertically
