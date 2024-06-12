@@ -26,8 +26,34 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import br.com.androidprofessional.data.api.ExampleApiState
+import br.com.androidprofessional.presentation.model.ObjectPresentation
+
+@Composable
+fun ErrorScreen(uiStateValue: ExampleApiState<ObjectPresentation>) {
+
+    Column {
+        Text(
+            modifier = Modifier.padding(vertical = 16.dp),
+            text = "Ocorreu um erro ${uiStateValue.message}",
+            style = TextStyle(fontSize = 18.sp),
+            color = Color.Red
+        )
+
+        Spacer(modifier = Modifier.padding(4.dp))
+        Text(
+            modifier = Modifier.padding(vertical = 16.dp),
+            text = "Tente novamente mais tarde",
+            style = TextStyle(fontSize = 16.sp),
+            color = Color.Blue,
+        )
+        Spacer(modifier = Modifier.padding(4.dp))
+    }
+}
 
 @Composable
 fun ShimmerScreen() {
