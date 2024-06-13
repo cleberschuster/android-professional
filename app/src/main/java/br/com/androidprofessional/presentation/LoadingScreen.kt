@@ -79,13 +79,13 @@ fun LoadingView(viewModel: ObserveStateViewModel = koinViewModel()) {
             shape = RoundedCornerShape(10),
         ) {
 
-            CarsContent(viewModel, uiState)
+            ScreenContent(viewModel, uiState)
         }
     }
 }
 
 @Composable
-fun CarsContent(viewModel: ObserveStateViewModel, uiStateValue: ExampleApiState<ObjectPresentation>) {
+fun ScreenContent(viewModel: ObserveStateViewModel, uiStateValue: ExampleApiState<ObjectPresentation>) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     //Inicio Faz a Busca quando clica no botao
