@@ -199,7 +199,7 @@ fun CarsContent(viewModel: ObserveStateViewModel, uiStateValue: ExampleApiState<
         }
 
         Status.ERROR -> {
-            ErrorScreen(ExampleApiState.error(uiStateValue.message.toString()))
+            ErrorScreen(uiStateValue = uiStateValue.message.toString())
         }
 
 //            Toast.makeText(context, "Ocorreu um erro ${uiStateValue.message}", Toast.LENGTH_LONG).show()

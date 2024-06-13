@@ -34,12 +34,12 @@ import br.com.androidprofessional.data.api.ExampleApiState
 import br.com.androidprofessional.presentation.model.ObjectPresentation
 
 @Composable
-fun ErrorScreen(uiStateValue: ExampleApiState<ObjectPresentation>) {
+fun ErrorScreen(uiStateValue: String) {
 
     Column {
         Text(
             modifier = Modifier.padding(vertical = 16.dp),
-            text = "Ocorreu um erro ${uiStateValue.message}",
+            text = "Ocorreu um erro $uiStateValue",
             style = TextStyle(fontSize = 18.sp),
             color = Color.Red
         )
