@@ -12,7 +12,6 @@ import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers
-import br.com.androidprofessional.presentation.YourActivity
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.junit.Rule

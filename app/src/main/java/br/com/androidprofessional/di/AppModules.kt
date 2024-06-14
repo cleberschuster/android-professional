@@ -9,7 +9,6 @@ import br.com.androidprofessional.data.retrofit.RetrofitClient
 import br.com.androidprofessional.domain.repository.YourRepository
 import br.com.androidprofessional.domain.usecase.GetExampleUseCase
 import br.com.androidprofessional.presentation.ObserveStateViewModel
-import br.com.androidprofessional.presentation.YourViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -26,7 +25,6 @@ val domainModules = module {
 
 val presentationModules = module {
     viewModel { ObserveStateViewModel(useCase = get()) }
-    viewModel { YourViewModel(useCase = get()) }
 }
 
 val dataModules = module {

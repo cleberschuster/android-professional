@@ -1,13 +1,11 @@
 package br.com.androidprofessional.presentation
 
-import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,10 +19,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -43,9 +39,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.androidprofessional.R
-import br.com.androidprofessional.data.api.ExampleApiState
+import br.com.androidprofessional.data.api.ApiState
 import br.com.androidprofessional.data.api.Status
-import br.com.androidprofessional.presentation.model.ObjectPresentation
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
@@ -85,7 +80,7 @@ fun LoadingView(viewModel: ObserveStateViewModel = koinViewModel()) {
 }
 
 @Composable
-fun ScreenContent(viewModel: ObserveStateViewModel, uiStateValue: ExampleApiState<ObjectPresentation>) {
+fun ScreenContent(viewModel: ObserveStateViewModel, uiStateValue: ApiState) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     //Inicio Faz a Busca quando clica no botao
@@ -200,9 +195,8 @@ fun ScreenContent(viewModel: ObserveStateViewModel, uiStateValue: ExampleApiStat
 
         Status.ERROR -> {
             ErrorScreen(uiStateError = uiStateValue.message.toString())
-        }
-
 //            Toast.makeText(context, "Ocorreu um erro ${uiStateValue.message}", Toast.LENGTH_LONG).show()
+        }
 
         Status.LOADING -> ShimmerScreen()
     }

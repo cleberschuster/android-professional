@@ -2,11 +2,10 @@ package br.com.androidprofessional.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.androidprofessional.data.api.ExampleApiState
+import br.com.androidprofessional.data.api.ApiState
 import br.com.androidprofessional.data.api.Status
 import br.com.androidprofessional.data.api.toErrorType
 import br.com.androidprofessional.domain.usecase.GetExampleUseCase
-import br.com.androidprofessional.presentation.model.ObjectPresentation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,11 +20,8 @@ import kotlinx.coroutines.launch
 class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel() {
 
     private val _uiState = MutableStateFlow(
-        ExampleApiState(
-            status =  Status.LOADING,
-            data =  ObjectPresentation(),
-            message = null
-        )
+        // ExampleApiState() ja esta com os valores inicializados na propria classe
+        ApiState()
     )
 
     val uiState = _uiState.stateIn(
@@ -39,7 +35,7 @@ class ObserveStateViewModel(private val useCase: GetExampleUseCase) : ViewModel(
     }
 
     fun getNewComment(id: Int) {
-        _uiState.update { it.copy(Status.LOADING) }
+        _uiState.update { it.copy(status = Status.LOADING) }
 
         viewModelScope.launch(Dispatchers.IO) {
             delay(2000)

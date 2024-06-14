@@ -1,11 +1,10 @@
 package br.com.androidprofessional.data.repository
 
-import br.com.androidprofessional.data.api.ExampleApiState
 import br.com.androidprofessional.data.datasource.RemoteDataSource
 import br.com.androidprofessional.domain.mapper.ObjectToPresentationMapper
 import br.com.androidprofessional.domain.repository.YourRepository
 import br.com.androidprofessional.presentation.model.ObjectPresentation
-import br.com.androidprofessional.utils.YourCompanyException
+import br.com.androidprofessional.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -28,11 +27,11 @@ class YourRepositoryImpl(
 
     private val mapper: ObjectToPresentationMapper = ObjectToPresentationMapper()
 
-    override suspend fun getExample(id: Int): Flow<ExampleApiState<ObjectPresentation>> = flow {
+    override suspend fun getExample(id: Int): Flow<Resource<ObjectPresentation>> = flow {
 
         val result = withContext(Dispatchers.IO) {
             mapper.map(remoteDataSource.getExample(id))
         }
-        emit(ExampleApiState.success(result))
+        emit(Resource.Success(result))
     }
 }
