@@ -1,4 +1,4 @@
-package br.com.androidprofessional.presentation
+package com.example.search
 
 sealed class Screen(val route: String) {
     data object HomeScreen : Screen("home")

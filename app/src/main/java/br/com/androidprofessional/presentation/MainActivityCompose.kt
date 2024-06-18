@@ -1,6 +1,5 @@
 package br.com.androidprofessional.presentation
 
-
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -22,9 +21,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import br.com.androidprofessional.R
-import br.com.androidprofessional.presentation.root.RootScreen
-import br.com.androidprofessional.ui.theme.AndroidProfessionalTheme
 import br.com.androidprofessional.ui.theme.ArsenalTheme
+import com.example.search.screens.root.RootScreen
 
 class MainActivityCompose : ComponentActivity() {
 
@@ -34,11 +32,10 @@ class MainActivityCompose : ComponentActivity() {
         setContent {
             Surface(color = MaterialTheme.colorScheme.background) {
 //                ConstraintLayoutExample()
-//                RootScreen()
+                RootScreen()
 //                SearchScreen()
-                VideoSaveState()
+//                VideoSaveState()
             }
-
         }
     }
 }

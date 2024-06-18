@@ -1,11 +1,11 @@
-package br.com.androidprofessional.presentation
+package com.example.search.screens.home
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.androidprofessional.data.api.recipeService
-import br.com.androidprofessional.data.model.dataclasses.HomeScreenState
+import com.example.search.dataclasses.HomeScreenState
+import com.example.search.api.recipeService
 import kotlinx.coroutines.launch
 
 class HomeScreenViewModel : ViewModel() {

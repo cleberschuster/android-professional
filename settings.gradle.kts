@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Android Professional"
 include(":app")
- 
+include(":search")

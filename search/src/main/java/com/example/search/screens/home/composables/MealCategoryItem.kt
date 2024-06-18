@@ -1,4 +1,4 @@
-package br.com.androidprofessional.presentation.composables
+package com.example.search.screens.home.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -12,7 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.androidprofessional.data.model.dataclasses.MealCategory
+import com.example.search.dataclasses.MealCategory
+import com.example.search.theme.RecipeAppTheme
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
@@ -42,16 +43,16 @@ fun MealCategoryItem(
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun CategoryItemPreview() {
-//    val mealCategory = MealCategory(
-//        idCategory = "0",
-//        strCategory = "Category",
-//        strCategoryDescription = "Description",
-//        strCategoryThumb = "https://www.themealdb.com/images/category/beef.png"
-//    )
-//    RecipeAppTheme {
-//        MealCategoryItem(mealCategory = mealCategory, navigateToCategoryDetailsScreen = {})
-//    }
-//}
+@Preview(showBackground = true)
+@Composable
+fun CategoryItemPreview() {
+    val mealCategory = MealCategory(
+        idCategory = "0",
+        strCategory = "Category",
+        strCategoryDescription = "Description",
+        strCategoryThumb = "https://www.themealdb.com/images/category/beef.png"
+    )
+    RecipeAppTheme {
+        MealCategoryItem(mealCategory = mealCategory, navigateToCategoryDetailsScreen = {})
+    }
+}

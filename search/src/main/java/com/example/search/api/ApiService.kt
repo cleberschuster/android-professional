@@ -1,6 +1,6 @@
-package br.com.androidprofessional.data.api
+package com.example.search.api
 
-import br.com.androidprofessional.data.model.dataclasses.MealCategoriesResponse
+import com.example.search.dataclasses.MealCategoriesResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET

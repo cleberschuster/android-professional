@@ -1,4 +1,4 @@
-package br.com.androidprofessional.data.model.dataclasses
+package com.example.search.dataclasses
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

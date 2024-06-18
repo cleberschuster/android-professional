@@ -1,4 +1,4 @@
-package br.com.androidprofessional.presentation.categorydetails
+package com.example.search.screens.categorydetails
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -22,7 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import br.com.androidprofessional.data.model.dataclasses.MealCategory
+import com.example.search.dataclasses.MealCategory
 import coil.compose.rememberAsyncImagePainter
 
 @OptIn(ExperimentalMaterial3Api::class)

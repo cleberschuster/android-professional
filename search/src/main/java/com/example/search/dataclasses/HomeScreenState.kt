@@ -1,4 +1,4 @@
-package br.com.androidprofessional.data.model.dataclasses
+package com.example.search.dataclasses
 
 data class HomeScreenState(
     val loading: Boolean = false,

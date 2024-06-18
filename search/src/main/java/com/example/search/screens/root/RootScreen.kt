@@ -1,17 +1,16 @@
-package br.com.androidprofessional.presentation.root
+package com.example.search.screens.root
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-//import androidx.compose.ui.graphics.BlendMode.Companion.Screen
-import br.com.androidprofessional.presentation.Screen
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.androidprofessional.data.model.dataclasses.MealCategory
-import br.com.androidprofessional.presentation.HomeScreen
-import br.com.androidprofessional.presentation.HomeScreenViewModel
-import br.com.androidprofessional.presentation.categorydetails.CategoryDetailsScreen
+import com.example.search.Screen
+import com.example.search.dataclasses.MealCategory
+import com.example.search.screens.categorydetails.CategoryDetailsScreen
+import com.example.search.screens.home.HomeScreen
+import com.example.search.screens.home.HomeScreenViewModel
 
 @Composable
 fun RootScreen() {
