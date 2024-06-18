@@ -58,6 +58,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":search"))
+
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.2")
@@ -114,7 +116,6 @@ dependencies {
     implementation("io.insert-koin:koin-test:3.4.0")
     implementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     implementation("com.squareup.okhttp3:mockwebserver:4.11.0")
-    implementation(project(":search"))
 
     // Test
     testImplementation("junit:junit:4.13.2")
