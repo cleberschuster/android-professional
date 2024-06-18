@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import br.com.androidprofessional.R
-import br.com.androidprofessional.ui.theme.ArsenalTheme
+import br.com.androidprofessional.ui.theme.AndroidProfessionalTheme
 import com.example.search.screens.root.RootScreen
 
 class MainActivityCompose : ComponentActivity() {
@@ -46,13 +46,12 @@ class MainActivityCompose : ComponentActivity() {
 private fun VideoSaveState() {
 //    viewModel.getNewComment(1)
 
-    ArsenalTheme {
+    AndroidProfessionalTheme {
         Scaffold(
             content = { LoadingView() }
         )
     }
 }
-
 
 @Preview
 @Composable
