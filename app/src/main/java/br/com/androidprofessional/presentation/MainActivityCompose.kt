@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import br.com.androidprofessional.R
+import br.com.androidprofessional.presentation.root.RootScreen
 import br.com.androidprofessional.ui.theme.AndroidProfessionalTheme
 import br.com.androidprofessional.ui.theme.ArsenalTheme
 
