@@ -43,14 +43,6 @@ class MainActivityCompose : ComponentActivity() {
     }
 }
 
-@Composable
-private fun TelaComCompose() {
-    AndroidProfessionalTheme {
-//        NoAnimation()
-//        WelcomeView(LocalContext.current)
-    }
-}
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
