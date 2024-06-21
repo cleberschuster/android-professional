@@ -1,4 +1,4 @@
-package br.com.androidprofessional.utils
+package com.example.search.screens
 
 class Actors(
     val actorName: String,

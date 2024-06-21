@@ -59,6 +59,8 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.10.0")
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.8")
+
 
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.06.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")

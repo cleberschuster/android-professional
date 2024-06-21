@@ -1,9 +1,9 @@
-package br.com.androidprofessional.presentation
+package com.example.search.screens
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.androidprofessional.utils.Actors
+
 
 class SearchViewModel : ViewModel() {
 
