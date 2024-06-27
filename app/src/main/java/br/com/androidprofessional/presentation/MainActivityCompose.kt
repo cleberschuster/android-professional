@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import br.com.androidprofessional.R
 import br.com.androidprofessional.ui.theme.AndroidProfessionalTheme
-import com.example.search.screens.SearchScreen
+import com.example.search.screens.home.MainScreen
 import com.example.search.screens.root.RootScreen
 
 class MainActivityCompose : ComponentActivity() {
@@ -33,8 +33,8 @@ class MainActivityCompose : ComponentActivity() {
         setContent {
             Surface(color = MaterialTheme.colorScheme.background) {
 //                ConstraintLayoutExample()
-                RootScreen()
-                SearchScreen()
+//                RootScreen()
+                MainScreen()
 //                VideoSaveState()
             }
         }
