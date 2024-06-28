@@ -2,7 +2,9 @@ package com.example.search.screens.home
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -66,6 +68,10 @@ fun MainScreen() {
 //                    }
 //                } else {
 //                    LazyColumn {
+
+                if (countriesList.isEmpty()) {
+                    MovieListEmptyState()
+                } else {
                     LazyVerticalGrid(GridCells.Fixed(2), modifier = Modifier.fillMaxSize()) {
 
                         items(
@@ -88,9 +94,30 @@ fun MainScreen() {
                         }
                     }
                 }
+            }
 //            }
         }
     ) {
 
+    }
+}
+
+@Composable
+fun MovieListEmptyState(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier.fillMaxSize()
+    ) {
+        Text(
+            text = "No movies found",
+            style = MaterialTheme.typography.titleSmall
+        )
+        Text(
+            text = "Try adjusting your search",
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
 }
