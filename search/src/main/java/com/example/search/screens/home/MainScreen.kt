@@ -53,7 +53,7 @@ fun MainScreen() {
                             modifier = Modifier.aspectRatio(1f)
                         )
                         Text(
-                            text = country.strCategory,
+                            text = "${country.idCategory} - ${country.strCategory}",
                             style = MaterialTheme.typography.headlineMedium,
                             modifier = Modifier.padding(top = 4.dp)
                         )
