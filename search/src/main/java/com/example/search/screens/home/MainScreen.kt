@@ -79,19 +79,33 @@ fun MainScreen() {
                             key = { item ->
                                 // Return a stable + unique key for the item
                                 item.idCategory
+                            },
+                            itemContent = {country ->
+                                Image(
+                                    painter = rememberAsyncImagePainter(country.strCategoryThumb),
+                                    contentDescription = country.strCategoryDescription,
+                                    modifier = Modifier.aspectRatio(1f)
+                                )
+                                Text(
+                                    text = "${country.idCategory} - ${country.strCategory}",
+                                    style = MaterialTheme.typography.headlineMedium,
+                                    modifier = Modifier.padding(top = 4.dp)
+                                )
                             }
-                        ) { country ->
-                            Image(
-                                painter = rememberAsyncImagePainter(country.strCategoryThumb),
-                                contentDescription = country.strCategoryDescription,
-                                modifier = Modifier.aspectRatio(1f)
-                            )
-                            Text(
-                                text = "${country.idCategory} - ${country.strCategory}",
-                                style = MaterialTheme.typography.headlineMedium,
-                                modifier = Modifier.padding(top = 4.dp)
-                            )
-                        }
+                        )
+                        //Assim tambem funciona, fora do itemContent = {} acima
+//                        { country ->
+//                            Image(
+//                                painter = rememberAsyncImagePainter(country.strCategoryThumb),
+//                                contentDescription = country.strCategoryDescription,
+//                                modifier = Modifier.aspectRatio(1f)
+//                            )
+//                            Text(
+//                                text = "${country.idCategory} - ${country.strCategory}",
+//                                style = MaterialTheme.typography.headlineMedium,
+//                                modifier = Modifier.padding(top = 4.dp)
+//                            )
+//                        }
                     }
                 }
             }
