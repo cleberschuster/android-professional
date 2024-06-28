@@ -67,7 +67,14 @@ fun MainScreen() {
 //                } else {
 //                    LazyColumn {
                     LazyVerticalGrid(GridCells.Fixed(2), modifier = Modifier.fillMaxSize()) {
-                        items(countriesList) { country ->
+
+                        items(
+                            items = countriesList,
+                            key = { item ->
+                                // Return a stable + unique key for the item
+                                item.idCategory
+                            }
+                        ) { country ->
                             Image(
                                 painter = rememberAsyncImagePainter(country.strCategoryThumb),
                                 contentDescription = country.strCategoryDescription,
