@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.search.api.recipeService
 import com.example.search.dataclasses.HomeScreenState
+import com.example.search.dataclasses.MealCategory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,7 +26,10 @@ class SearchViewModel : ViewModel() {
                 countries
             } else {
             countries.filter { country ->// filter and return a list of countries based on the text the user typed
-                country.strCategory.contains(text.trim().lowercase(), ignoreCase = true)
+                // This function is a costumize search
+//                doesMatchSearchQuery(country, text)
+                // This is a simple search
+                country.strCategory.contains(text.trim(), ignoreCase = true)
             }
             }
         }.stateIn(//basically convert the Flow returned from combine operator to StateFlow
@@ -66,5 +70,17 @@ class SearchViewModel : ViewModel() {
                 )
             }
         }
+    }
+}
+
+fun doesMatchSearchQuery(mealCategory: MealCategory, query: String): Boolean {
+    val matchingCombinations = listOf(
+        "${mealCategory.idCategory}${mealCategory.strCategory}",
+        "$mealCategory.idCategory $mealCategory.strCategory",
+        "${mealCategory.idCategory.first()} ${mealCategory.strCategory.first()}",
+    )
+
+    return matchingCombinations.any {
+        it.contains(query, ignoreCase = true)
     }
 }

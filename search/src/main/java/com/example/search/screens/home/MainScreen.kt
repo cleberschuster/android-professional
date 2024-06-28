@@ -57,14 +57,6 @@ fun MainScreen() {
                             style = MaterialTheme.typography.headlineMedium,
                             modifier = Modifier.padding(top = 4.dp)
                         )
-//                        Text(
-//                            text = country,
-//                            modifier = Modifier.padding(
-//                                start = 8.dp,
-//                                top = 4.dp,
-//                                end = 8.dp,
-//                                bottom = 4.dp)
-//                        )
                     }
                 }
             }
