@@ -1,6 +1,7 @@
 package com.example.search.screens.home
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,11 +24,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import coil.compose.rememberAsyncImagePainter
@@ -46,6 +52,29 @@ fun MainScreen() {
 //    val isSearching by viewModel.isSearching.collectAsStateWithLifecycle()
 
     val keyboardController = LocalSoftwareKeyboardController.current
+
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_CREATE  -> {}/* onCreate  */
+                Lifecycle.Event.ON_START   -> {}/* onStart   */
+                Lifecycle.Event.ON_RESUME  -> {
+                    Toast.makeText(context, "estou ON_RESUME", Toast.LENGTH_SHORT).show()}/* onResume  */
+                Lifecycle.Event.ON_PAUSE   -> {}/* onPause   */
+                Lifecycle.Event.ON_STOP    -> {}/* onStop    */
+                Lifecycle.Event.ON_DESTROY -> {}/* onDestroy */
+                Lifecycle.Event.ON_ANY     -> {}/* Em qualquer evento */
+            }
+        }
+
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
 
     Scaffold(
         topBar = {
