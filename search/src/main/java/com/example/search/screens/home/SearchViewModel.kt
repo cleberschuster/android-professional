@@ -28,8 +28,8 @@ class SearchViewModel : ViewModel() {
 
     //third state the list to be filtered
     private val _countriesList = MutableStateFlow(_homeScreenState.value.categories)
-    val countriesList = searchText
-        .combine(_countriesList) { text, countries ->//combine searchText with _contriesList
+    val countriesList = searchText.combine(_countriesList) { text, countries ->//combine searchText with _contriesList
+
             if (text.isBlank()) { //return the entery list of countries if not is typed
                 countries
             } else {
