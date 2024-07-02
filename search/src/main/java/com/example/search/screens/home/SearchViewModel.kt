@@ -80,25 +80,30 @@ class SearchViewModel : ViewModel() {
     private fun fetchCategories() {
         viewModelScope.launch {
             try {
-                _homeScreenState.value =
-                    _homeScreenState.value.copy(
+                _homeScreenState.update {
+                    it.copy(
                         loading = true,
                         categories = emptyList()
                     )
+                }
                 val response = recipeService.getCategories()
-                _homeScreenState.value = _homeScreenState.value.copy(
-                    categories = response.categories,
-                    loading = false,
-                    error = null,
-                )
+                _homeScreenState.update {
+                    it.copy(
+                        categories = response.categories,
+                        loading = false,
+                        error = null,
+                    )
+                }
 
                 _countriesList.value = _homeScreenState.value.categories
 
             } catch (e: Exception) {
-                _homeScreenState.value = _homeScreenState.value.copy(
-                    loading = false,
-                    error = e.message,
-                )
+                _homeScreenState.update {
+                    it.copy(
+                        loading = false,
+                        error = e.message,
+                    )
+                }
             }
         }
     }
