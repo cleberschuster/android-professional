@@ -25,7 +25,11 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -35,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 import coil.compose.rememberAsyncImagePainter
 
@@ -42,14 +47,16 @@ import coil.compose.rememberAsyncImagePainter
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen() {
+fun MainScreen(viewModel: SearchViewModel = viewModel()) {
 
-    val viewModel = SearchViewModel()
+    val textoDigitado by viewModel.textoDigitado.collectAsStateWithLifecycle()
+    val listaFiltrada by viewModel.listaFiltrada.collectAsStateWithLifecycle()
 
-    //Collecting states from ViewModel
-    val searchText by viewModel.searchText.collectAsStateWithLifecycle()
-    val countriesList by viewModel.countriesList.collectAsStateWithLifecycle()
-//    val isSearching by viewModel.isSearching.collectAsStateWithLifecycle()
+    var textoQuery by rememberSaveable {
+        mutableStateOf(
+            textoDigitado
+        )
+    }
 
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -79,8 +86,11 @@ fun MainScreen() {
     Scaffold(
         topBar = {
             SearchBar(
-                query = searchText,//text showed on SearchBar
-                onQueryChange = viewModel::onSearchTextChange, //update the value of searchText
+                query = textoQuery,//text showed on SearchBar
+                onQueryChange = {
+                    textoQuery = it
+                    viewModel.onTextChanged(it)
+                }, //update the value of searchText
                 onSearch = { keyboardController?.hide() }, //the callback to be invoked when the input service triggers the ImeAction.Search action
                 active = true, //whether the user is searching or not
                 onActiveChange = {}, //the callback to be invoked when this search bar's active state is changed
@@ -98,13 +108,13 @@ fun MainScreen() {
 //                } else {
 //                    LazyColumn {
 
-                if (countriesList.isEmpty()) {
+                if (listaFiltrada.isEmpty()) {
                     MovieListEmptyState()
                 } else {
                     LazyVerticalGrid(GridCells.Fixed(2), modifier = Modifier.fillMaxSize()) {
 
                         items(
-                            items = countriesList,
+                            items = listaFiltrada,
                             key = { item ->
                                 // Return a stable + unique key for the item
                                 item.idCategory
