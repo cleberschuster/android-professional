@@ -23,7 +23,7 @@ class SearchViewModel : ViewModel() {
     private val _homeScreenState = MutableStateFlow(HomeScreenState())
 
     private val _textoDigitado = MutableStateFlow("")
-    val textoDigitado: StateFlow<String> = _textoDigitado.asStateFlow()
+    val textoDigitado = _textoDigitado.asStateFlow()
 
     private val _listaOriginal = MutableStateFlow(_homeScreenState.value.categories)
 
