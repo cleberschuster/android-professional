@@ -25,7 +25,7 @@ class SearchViewModel : ViewModel() {
     private val _textoDigitado = MutableStateFlow("")
     val textoDigitado = _textoDigitado.asStateFlow()
 
-    private val _listaOriginal = MutableStateFlow(_homeScreenState.value.categories)
+    private val _listaOriginal = MutableStateFlow(HomeScreenState().categories)
 
     val listaFiltrada: StateFlow<List<MealCategory>> =
         _textoDigitado.combine(_listaOriginal) { texto, lista ->
