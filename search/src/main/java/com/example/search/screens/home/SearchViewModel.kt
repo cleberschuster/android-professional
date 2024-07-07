@@ -25,7 +25,7 @@ class SearchViewModel : ViewModel() {
     private val _textoDigitado = MutableStateFlow("")
     val textoDigitado: StateFlow<String> = _textoDigitado.asStateFlow()
 
-    private val _listaOriginal = MutableStateFlow(HomeScreenState().categories)
+    private val _listaOriginal = MutableStateFlow(_homeScreenState.value.categories)
 
     val listaFiltrada: StateFlow<List<MealCategory>> =
         _textoDigitado.combine(_listaOriginal) { texto, lista ->
@@ -35,9 +35,9 @@ class SearchViewModel : ViewModel() {
                 lista.filter { it.strCategory.contains(texto, ignoreCase = true) }
             }
         }.stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000),
-            _listaOriginal.value
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = _listaOriginal.value
         )
 
     fun onTextChanged(novoTexto: String) {
