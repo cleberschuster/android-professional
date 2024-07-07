@@ -42,7 +42,7 @@ class SearchViewModel : ViewModel() {
         }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = _listaOriginal.value
+            initialValue = emptyList()
         )
 
     fun onTextChanged(novoTexto: String) {
