@@ -32,7 +32,12 @@ class SearchViewModel : ViewModel() {
             if (texto.isBlank()) {
                 lista
             } else {
-                lista.filter { it.strCategory.contains(texto, ignoreCase = true) }
+                lista.filter {
+                    // filtro simples
+                    it.strCategory.contains(texto, ignoreCase = true)
+                    // filtro customizado
+//                    doesMatchSearchQuery(it, texto)
+                }
             }
         }.stateIn(
             scope = viewModelScope,
