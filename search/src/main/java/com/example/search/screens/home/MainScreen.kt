@@ -51,6 +51,7 @@ fun MainScreen(viewModel: SearchViewModel = viewModel()) {
 
     val textoDigitado by viewModel.textoDigitado.collectAsStateWithLifecycle()
     val listaFiltrada by viewModel.listaFiltrada.collectAsStateWithLifecycle()
+//    val isSearching by viewModel.isSearching.collectAsState()
 
     var textoQuery by rememberSaveable {
         mutableStateOf(

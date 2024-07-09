@@ -25,6 +25,9 @@ class SearchViewModel : ViewModel() {
     private val _textoDigitado = MutableStateFlow("")
     val textoDigitado = _textoDigitado.asStateFlow()
 
+//    private val _isSearching = MutableStateFlow(false)
+//    val isSearching = _isSearching.asStateFlow()
+
     private val _listaOriginal = MutableStateFlow(HomeScreenState().categories)
 
     val listaFiltrada: StateFlow<List<MealCategory>> =
@@ -51,10 +54,10 @@ class SearchViewModel : ViewModel() {
 
     // Outra forma de executar a busca, se necessario com delay
 //    @OptIn(FlowPreview::class)
-//    val countriesList = searchText
+//    val countriesList = _textoDigitado
 //        .debounce(1000L)
 //        .onEach { _isSearching.update { true } }
-//        .combine(_countriesList) { text, persons ->
+//        .combine(_listaOriginal) { text, persons ->
 //            if(text.isBlank()) {
 //                persons
 //            } else {
@@ -68,7 +71,7 @@ class SearchViewModel : ViewModel() {
 //        .stateIn(
 //            viewModelScope,
 //            SharingStarted.WhileSubscribed(5000),
-//            _countriesList.value
+//            _listaOriginal.value
 //        )
 
     init {
