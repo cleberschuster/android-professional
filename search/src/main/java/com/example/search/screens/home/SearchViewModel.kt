@@ -1,5 +1,8 @@
 package com.example.search.screens.home
 
+import android.util.Log
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.search.api.recipeService
@@ -18,12 +21,73 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+class SearchViewModelRecomended : ViewModel() {
+
+    private val _homeScreenState = MutableStateFlow(HomeScreenState())
+
+    private val _searchText = mutableStateOf(value = "")
+    val searchText: State<String> = _searchText
+
+    private val _originalList = MutableStateFlow(HomeScreenState().categories)
+    private val _filteredList = MutableStateFlow(HomeScreenState().categories)
+    val listaFiltrada = _filteredList.asStateFlow()
+
+    fun updateSearchText(newText: String) {
+        _searchText.value = newText
+        Log.d("SearchViewModel", "updateSearchText: $newText")
+
+        val filtered = if (newText.isEmpty()) {
+            _originalList.value
+        } else {
+            _originalList.value.filter { it.strCategory.contains(newText, ignoreCase = true) }
+        }
+        _filteredList.value = filtered
+    }
+
+    init {
+        fetchCategories()
+    }
+
+    private fun fetchCategories() {
+        viewModelScope.launch {
+            Log.d("SearchViewModel", "fetchCategories()")
+            try {
+                _homeScreenState.update {
+                    it.copy(
+                        loading = true,
+                        categories = emptyList()
+                    )
+                }
+                val response = recipeService.getCategories()
+                _homeScreenState.update {
+                    it.copy(
+                        categories = response.categories,
+                        loading = false,
+                        error = null,
+                    )
+                }
+
+                _originalList.value = _homeScreenState.value.categories
+                _filteredList.value = _originalList.value
+
+            } catch (e: Exception) {
+                _homeScreenState.update {
+                    it.copy(
+                        loading = false,
+                        error = e.message,
+                    )
+                }
+            }
+        }
+    }
+}
+
 class SearchViewModel : ViewModel() {
 
     private val _homeScreenState = MutableStateFlow(HomeScreenState())
 
-    private val _textoDigitado = MutableStateFlow("")
-    val textoDigitado = _textoDigitado.asStateFlow()
+    private val _searchText = MutableStateFlow("")
+    val searchText = _searchText.asStateFlow()
 
 //    private val _isSearching = MutableStateFlow(false)
 //    val isSearching = _isSearching.asStateFlow()
@@ -31,7 +95,7 @@ class SearchViewModel : ViewModel() {
     private val _listaOriginal = MutableStateFlow(HomeScreenState().categories)
 
     val listaFiltrada: StateFlow<List<MealCategory>> =
-        _textoDigitado.combine(_listaOriginal) { texto, lista ->
+        _searchText.combine(_listaOriginal) { texto, lista ->
             if (texto.isBlank()) {
                 lista
             } else {
@@ -49,7 +113,7 @@ class SearchViewModel : ViewModel() {
         )
 
     fun onTextChanged(novoTexto: String) {
-        _textoDigitado.value = novoTexto
+        _searchText.value = novoTexto
     }
 
     // Outra forma de executar a busca, se necessario com delay

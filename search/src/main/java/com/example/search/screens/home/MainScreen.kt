@@ -47,9 +47,11 @@ import coil.compose.rememberAsyncImagePainter
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(viewModel: SearchViewModel = viewModel()) {
+//fun MainScreen(viewModel: SearchViewModel = viewModel()) {
+fun MainScreen(viewModel: SearchViewModelRecomended = viewModel()) {
 
-    val textoDigitado by viewModel.textoDigitado.collectAsStateWithLifecycle()
+//    val textoDigitado by viewModel.searchText.collectAsStateWithLifecycle()
+    val textoDigitado by viewModel.searchText
     val listaFiltrada by viewModel.listaFiltrada.collectAsStateWithLifecycle()
 //    val isSearching by viewModel.isSearching.collectAsState()
 
@@ -90,7 +92,8 @@ fun MainScreen(viewModel: SearchViewModel = viewModel()) {
                 query = textoQuery,//text showed on SearchBar
                 onQueryChange = {
                     textoQuery = it
-                    viewModel.onTextChanged(it)
+                    viewModel.updateSearchText(it)
+//                    viewModel.onTextChanged(it)
                 }, //update the value of searchText
                 onSearch = { keyboardController?.hide() }, //the callback to be invoked when the input service triggers the ImeAction.Search action
                 active = true, //whether the user is searching or not
