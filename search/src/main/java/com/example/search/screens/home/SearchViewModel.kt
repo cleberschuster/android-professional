@@ -82,6 +82,8 @@ class SearchViewModelRecomended : ViewModel() {
     }
 }
 
+
+//Esta utiliza o combine pra filtrar a lista original
 class SearchViewModel : ViewModel() {
 
     private val _homeScreenState = MutableStateFlow(HomeScreenState())
