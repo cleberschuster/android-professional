@@ -29,7 +29,7 @@ class SearchViewModelRecomended : ViewModel() {
     val searchText: State<String> = _searchText
 
     private val _originalList = MutableStateFlow(HomeScreenState().categories)
-    private val _filteredList = MutableStateFlow(HomeScreenState().categories)
+    private val _filteredList = MutableStateFlow(listOf<MealCategory>())
     val listaFiltrada = _filteredList.asStateFlow()
 
     fun updateSearchText(newText: String) {
