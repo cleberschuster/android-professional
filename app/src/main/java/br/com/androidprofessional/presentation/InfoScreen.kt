@@ -45,7 +45,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun LoadingView(viewModel: ObserveStateViewModel = koinViewModel()) {
+fun InfoScreen(viewModel: ObserveStateViewModel = koinViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lifecycleOwner = LocalLifecycleOwner.current
     val disposable: () -> Unit = {}

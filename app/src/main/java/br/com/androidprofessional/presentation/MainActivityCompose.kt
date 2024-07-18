@@ -34,8 +34,8 @@ class MainActivityCompose : ComponentActivity() {
             Surface(color = MaterialTheme.colorScheme.background) {
 //                ConstraintLayoutExample()
 //                RootScreen()
-                MainScreen()
-//                VideoSaveState()
+//                MainScreen()
+                ScreenSaveState()
             }
         }
     }
@@ -44,12 +44,12 @@ class MainActivityCompose : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun VideoSaveState() {
+private fun ScreenSaveState() {
 //    viewModel.getNewComment(1)
 
     AndroidProfessionalTheme {
         Scaffold(
-            content = { LoadingView() }
+            content = { InfoScreen() }
         )
     }
 }
