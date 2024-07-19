@@ -8,13 +8,7 @@ data class ApiState(
     val status: Status = Status.LOADING,
     val data: ObjectPresentation? = null,
     val message: String ?= null
-) {
-//    companion object {
-//        fun success(): ApiState {
-//            return ApiState()
-//        }
-//    }
-}
+)
 
 enum class Status {
     SUCCESS,
