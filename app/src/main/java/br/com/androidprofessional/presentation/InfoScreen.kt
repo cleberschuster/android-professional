@@ -50,8 +50,6 @@ fun InfoScreen(viewModel: ObserveStateViewModel = koinViewModel()) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val disposable: () -> Unit = {}
 
-//    LaunchedEffect(uiState){}
-
     DisposableEffect(lifecycleOwner) {
         onDispose {
             disposable.invoke()
