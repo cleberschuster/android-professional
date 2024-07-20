@@ -50,11 +50,11 @@ fun InfoScreen(viewModel: ObserveStateViewModel = koinViewModel()) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val disposable: () -> Unit = {}
 
-    DisposableEffect(lifecycleOwner) {
-        onDispose {
-            disposable.invoke()
-        }
-    }
+//    DisposableEffect(lifecycleOwner) {
+//        onDispose {
+//            disposable.invoke()
+//        }
+//    }
     Column(
         modifier = Modifier
             .padding(horizontal = 16.dp)
