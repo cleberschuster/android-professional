@@ -55,8 +55,6 @@ fun InfoScreen(viewModel: ObserveStateViewModel = koinViewModel()) {
             disposable.invoke()
         }
     }
-
-
     Column(
         modifier = Modifier
             .padding(horizontal = 16.dp)
