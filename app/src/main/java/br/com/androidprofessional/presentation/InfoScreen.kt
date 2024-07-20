@@ -81,24 +81,36 @@ fun InfoScreen(viewModel: ObserveStateViewModel = koinViewModel()) {
 fun ScreenContent(viewModel: ObserveStateViewModel, uiStateValue: ApiState) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
-    //Inicio Faz a Busca quando clica no botao
+
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
+        var searchText by rememberSaveable(stateSaver = TextFieldValue.Saver) {
+            mutableStateOf(TextFieldValue())
+        }
+//        var searchText by rememberSaveable { mutableStateOf("") }
 
-        var textState by rememberSaveable { mutableStateOf("") }
-        TextField(
-            placeholder = { Text("Pesquisar") },
-            value = textState,
-            onValueChange = { textState = it },
+        SearchTextField(
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
-            )
+            ),
+            value = searchText,
+            onValueChange = {
+                searchText = it
+            },
+            hint = stringResource(R.string.search),
+            color = MaterialTheme.colorScheme.background
         )
-        IconButton(onClick = {
 
-            coroutineScope.launch { viewModel.getNewComment(textState.toInt()) }
-            Toast.makeText(context, "Call APi onClick", Toast.LENGTH_SHORT).show()
+        IconButton(onClick = {
+            if (searchText.text.isNotEmpty()) {
+                // Pass latest query to refresh search results.
+                coroutineScope.launch { viewModel.getNewComment(searchText.text.toInt()) }
+                Toast.makeText(context, "Call APi onValueChange", Toast.LENGTH_SHORT).show()
+
+            } else {
+                Toast.makeText(context, "O text field esta vazio", Toast.LENGTH_SHORT).show()
+            }
 
         }) {
             Icon(
@@ -106,38 +118,8 @@ fun ScreenContent(viewModel: ObserveStateViewModel, uiStateValue: ApiState) {
                 contentDescription = null,
             )
         }
-        Text("INFO: ${textState}")
-    }//Fim Faz a Busca quando clica no botao
-
-    //Inicio Faz uma nova Busca a cada caractere digitado
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        var search by rememberSaveable(stateSaver = TextFieldValue.Saver) {
-            mutableStateOf(TextFieldValue())
-        }
-
-        SearchTextField(
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number
-            ),
-            value = search,
-            onValueChange = {
-                search = it
-
-                if (search.text.isNotEmpty()) {
-                    // Pass latest query to refresh search results.
-                    coroutineScope.launch { viewModel.getNewComment(search.text.toInt()) }
-                    Toast.makeText(context, "Call APi onValueChange", Toast.LENGTH_SHORT).show()
-
-                } else {
-                    Toast.makeText(context, "O text field esta vazio", Toast.LENGTH_SHORT).show()
-                }
-
-            }, hint = stringResource(R.string.search),
-            color = MaterialTheme.colorScheme.background
-        )
-    }                     //Fim Faz uma nova Busca a cada caractere digitado
+        Text("INFO: ${searchText.text}")
+    }
 
     when (uiStateValue.status) {
         Status.SUCCESS -> {
